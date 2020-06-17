@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_12_001801) do
+ActiveRecord::Schema.define(version: 2020_06_16_085950) do
 
   create_table "tasks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "status"
+    t.bigint "Users_id"
+    t.string "user"
+    t.bigint "User_id"
+    t.index ["User_id"], name: "index_tasks_on_User_id"
+    t.index ["Users_id"], name: "index_tasks_on_Users_id"
+  end
+
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "User_id_id"
+    t.index ["User_id_id"], name: "index_users_on_User_id_id"
   end
 
 end
