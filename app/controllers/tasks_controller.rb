@@ -1,11 +1,13 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
+  before_action :correct_user, only: [:destroy]
   
   def index
     @tasks = Task.all
   end
 
   def show
+    @task = Task.find(params[:id])
   end
 
   def new
@@ -24,6 +26,7 @@ class TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:id])
   end
 
   def update
@@ -38,8 +41,8 @@ class TasksController < ApplicationController
 
   def destroy
     @task.destroy
-    flash[:success] = 'メッセージを削除しました。'
-    redirect_back(fallback_location: root_path)
+    flash[:success] = 'タスクを削除しました。'
+    redirect_to root_url
   end
 
 private
