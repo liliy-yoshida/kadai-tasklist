@@ -19,8 +19,9 @@ class TasksController < ApplicationController
       flash[:success] = 'タスク が正常に投稿されました'
       redirect_to root_url
     else
-      flash.now[:danger] = 'タスク が投稿されませんでした'
-      render 'tasks#index'
+      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
+      flash.now[:danger]='タスクが投稿されませんでした'
+      render 'tasks/index'
     end
   end
 
