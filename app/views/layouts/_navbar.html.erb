@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="/">Tasklists</a>
     <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
       <ul class="navbar-nav">
-          <% if logged_in? %>
+        <% if logged_in? %>
           <li class="nav-item"><%= link_to 'Logout', logout_path, method: :delete %></li>
         <% else %>
           <li class="nav-item"><%= link_to 'Signup', signup_path, class: 'nav-link' %></li>
